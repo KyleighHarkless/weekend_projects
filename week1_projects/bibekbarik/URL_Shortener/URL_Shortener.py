@@ -55,6 +55,8 @@ def get_url(code, data):
 
 # this function return all shortened URLs safely 
 def list_urls(data):
+    """Print all stored short codes and their corresponding URLs."""
+
     if not isinstance(data, dict):
         print("Error: Data store is corrupted or invalid.")
         return
@@ -68,6 +70,8 @@ def list_urls(data):
 
 # this function delete a shortened URL by its code
 def delete_url(code, data):
+    """Remove a short code and its URL from data and return True if successful."""
+
     if not isinstance(data, dict):
         print("Error: Data store is corrupted or invalid.")
         return False
@@ -90,6 +94,8 @@ def delete_url(code, data):
         return False
 
 def main():
+    """Run the interactive URL shortener menu for shortening, retrieving, listing, or deleting URLs."""
+
     data = load_data()
     print("\n=== URL Shortener ===")
     while True:
