@@ -7,6 +7,13 @@ data_store = 'url_data.json'  # file to store the mapped urls with it's unique c
 
 # a function to loads data inside the local file(data_store.json) or empty dict
 def load_data():
+    """
+    Load and return URL mapping data from the local JSON file.
+    
+    Returns:
+        dict: A dictionary mapping short codes to original URLs.
+        Returns an empty dictionary if the file doesn't exist or is corrupted.
+    """
     if not os.path.exists(data_store):
         return {}
     try:
@@ -22,6 +29,8 @@ def save_data(data):
 
 # a function to generate a 6 digits random code that is use to map the original long url
 def generate_code(existing_codes, length=6):
+    """Generate a unique random alphanumeric short code not in existing_codes."""
+
     chars = string.ascii_letters + string.digits
     while True:
         code = ''.join(random.choices(chars, k=length))
@@ -30,6 +39,8 @@ def generate_code(existing_codes, length=6):
 
 # function to map the generated random short code with original long url
 def shorten_url(url, data):
+    """Create a short code for a URL, store it in data, and return the code."""
+
     if not url:
         raise ValueError('URL cannot be empty')
     
